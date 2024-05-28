@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darbuotojai</title>
+    <link href="/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-5">
+                    <div class="card-header">Darbuotojo informacija</div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Vardas:</label>
+                                <input class="form-control" type="text" value="{{ name }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Pavardė:</label>
+                                <input class="form-control" type="text" value="{{ surname }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Lytis:</label>
+                                <input class="form-control" type="text" value="{{ gender }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Telefonas:</label>
+                                <input class="form-control" type="text" value="{{ phone }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Gimimo data</label>
+                                <input class="form-control" type="text" value="{{ birthday }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Išsilavinimas:</label>
+                                <input class="form-control" type="text" value="{{ education }}">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Darbo užmokestis</label>
+                                <input class="form-control" type="text" value="{{ salary }}">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
