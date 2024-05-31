@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darbuotojai</title>
+    <link href="/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-5">
+                    <div class="card-header">Pridėti naują darbuotoją</div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label" for="">Vardas:</label>
+                                <input class="form-control" type="text" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Pavardė:</label>
+                                <input class="form-control" type="text" name="surname">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Lytis:</label>
+                                <select name="gender" class="form-control">
+                                    <option value="" selected></option>
+                                    <option value="vyras">vyras</option>
+                                    <option value="moteris">moteris</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Telefonas:</label>
+                                <input class="form-control" type="text" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Gimimo data:</label>
+                                <input class="form-control" type="text" name="birthday">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Išsilavinimas:</label>
+                                <input class="form-control" type="text" name="education">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="">Darbo užmokestis:</label>
+                                <input class="form-control" type="text" name="salary">
+                            </div>
+                            <button type="submit" name="add" class="btn btn-success">Pridėti darbuotoją</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

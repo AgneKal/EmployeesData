@@ -25,17 +25,18 @@ const server = http.createServer((req, res) => {
         const ext = path.extname(filePath);
         switch(ext) {
             case ".css":
-                 res.setHeader('Content-Type', 'text/css');
-                 break;
+                res.setHeader('Content-Type', 'text/css');
+                break;
             case ".jpg":
             case ".jpeg":
             case ".png":
-                 res.setHeader('Content-Type', 'image/jpg');
-                 break;
+                res.setHeader('Content-Type', 'image/jpg');
+                break;
             case ".js":
                 res.setHeader('Content-Type', 'applications/javascript');
                 break;
         }
+        //default padaryti
         
         let file = fs.readFileSync(filePath);
         res.write(file);
@@ -50,7 +51,7 @@ const server = http.createServer((req, res) => {
                 let rows = "";
                 result.forEach((e) => {
                     rows+="<tr>";
-                    rows+=`<td>${e.name}</td> <td>${e.surname}</td> <td>${e.phone}</td> <td> <a href='/employee/${e.id}' class="btn btn-success">Plačiau</a></td>`;
+                    rows+=`<td>${e.name}</td> <td>${e.surname}</td> <td>${e.phone}</td> <td> <a href='/employee/${e.id}' class="btn btn-success">Plačiau</a><a href='/delete/${e.id}' class="btn btn-danger">Ištinti</a></td>`;
                     rows+="</tr>";
                 });
                 let template = fs.readFileSync('templates/employees.html').toString();
@@ -80,6 +81,54 @@ const server = http.createServer((req, res) => {
                 res.write(template);
                 res.end();
             });
+    }
+
+    if(url === '/addEmployee' && method === 'POST') {
+        if(connected){
+            const reqBody: any[] = [];
+            req.on('data', (d) => {
+                reqBody.push(d);
+            });
+            req.on('end', () => {
+                const reqData = decodeURIComponent(Buffer.concat(reqBody).toString());
+                const dd = reqData.split('&');
+                console.log(dd);
+                const name = mysql.escape(dd[0].split('=')[1]);
+                const surname = mysql.escape(dd[1].split('=')[1]);
+                const gender = mysql.escape(dd[2].split('=')[1]);
+                const phone = mysql.escape(dd[3].split('=')[1]);
+                const birthday = mysql.escape(dd[4].split('=')[1]);
+                const education = mysql.escape(dd[5].split('=')[1]);
+                const salary = mysql.escape(dd[6].split('=')[1]);
+                const sql = `INSERT INTO employees(name, surname, gender, phone, birthday, education, salary) VALUES (${name}, ${surname}, ${gender}, ${phone}, ${birthday}, ${education}, ${salary})`;
+                connection.query(sql, (error) => {
+                    if(error) throw error;
+                });
+                res.writeHead(302, {
+                    location: '/employees',
+                });
+                res.end();
+            })
+        }
+    }
+
+    if(url === '/addEmployee' && method === 'GET') {
+        if(connected){
+            const template = fs.readFileSync('templates/addEmployee.html').toString();
+            res.write(template);
+            res.end();
+        }
+    }
+
+    if(url?.split('/')[1] === 'delete') {
+        const id = parseInt(url?.split('/')[2]);
+        connection.query<Employee[]>(`DELETE FROM employees WHERE id=${id}`, (error) => {
+            if(error) throw error;
+            res.writeHead(302, {
+                location: '/employees',
+            });
+            res.end();
+        });
     }
 
 });
