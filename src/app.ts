@@ -92,7 +92,6 @@ const server = http.createServer((req, res) => {
             req.on('end', () => {
                 const reqData = decodeURIComponent(Buffer.concat(reqBody).toString());
                 const dd = reqData.split('&');
-                console.log(dd);
                 const name = mysql.escape(dd[0].split('=')[1]);
                 const surname = mysql.escape(dd[1].split('=')[1]);
                 const gender = mysql.escape(dd[2].split('=')[1]);
