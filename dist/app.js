@@ -17,7 +17,7 @@ connection.connect((error) => {
 const server = http_1.default.createServer((req, res) => {
     const url = req.url;
     const method = req.method;
-    let filePath = `public${url}`;
+    const filePath = `public${url}`;
     if (fs_1.default.existsSync(filePath) && fs_1.default.lstatSync(filePath).isFile()) {
         const ext = path_1.default.extname(filePath);
         switch (ext) {
@@ -34,7 +34,7 @@ const server = http_1.default.createServer((req, res) => {
                 break;
         }
         //default padaryti
-        let file = fs_1.default.readFileSync(filePath);
+        const file = fs_1.default.readFileSync(filePath);
         res.write(file);
         return res.end();
     }

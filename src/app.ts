@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
     const url = req.url;
     const method = req.method;
 
-    let filePath = `public${url}`;
+    const filePath = `public${url}`;
 
         
     if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
         }
         //default padaryti
         
-        let file = fs.readFileSync(filePath);
+        const file = fs.readFileSync(filePath);
         res.write(file);
         return res.end();
     }   
